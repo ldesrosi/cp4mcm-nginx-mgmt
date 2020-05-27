@@ -394,33 +394,31 @@ Now that we have covered our resources and know what each of them do, we can go 
 
 2. Clone the github repo and open the resource directory.
 
-`git clone https://github.com/vsrn09/cp4mcm-nginx-app.git`
+`git clone https://github.com/ldesrosi/cp4mcm-nginx-mgmt.git `
 
 ` cd resources `
 
 3. If you have IBM Container Image Security Enforecement enabled and would like to allow all repos to be used run the following command. 
 
-`oc apply -f image-policy.yaml`
+`oc apply -f ../policies/image-policy.yaml`
 
 3. Create your channel. 
 
-` oc apply -f 00-channel.yaml`
+`oc apply -f 00-channel.yaml`
 
-4. Run the following command to install the Nginx App. 
+2. Crate your Placement Rule by running the follwoing command. 
 
-`oc apply -f 01-nginx-deployable.yaml`
+`oc apply -f 01-placement-rule.yaml`
 
-5. Crate your Placement Rule by running the follwoing command. 
+3. Create your subcription with the following command. 
 
-`oc apply -f 02-placement-rule.yaml`
+`oc apply -f 02-subscription.yaml`
 
-6. Create your subcription with the following command. 
+4. Create your application resource with the following oc command. 
 
-`oc apply -f 03-subscription.yaml`
+`oc apply -f 03-app.yaml`
 
-7. Create your application resource with the following oc command. 
+This will not deploy the application to a targeted cluster as the placement rule has to be met first. For our placement rule, there needs to be a healthy targeted cluster with the label `environment` set to `Dev`. Once a targeted cluster meets this criteria, the application will then be deployed to that cluster.
 
-`oc apply -f 04-app.yaml`
-
-This will not deploy the application to a targeted cluster as the placement rule has to be met first. For our placement rule, there needs to be a healthy targeted cluster with the label `environment` set to `Dev`. Once a targeted cluster meets this criteria, the application will then be deployed to that cluster. 
+Note that this repository does NOT contain any NGINX deployment.  Instead the 00-channel.yaml contains a GitHub repo that will be used by MCM to clone and instrument the standard NGINX deployment with the MCM instructions.
 
