@@ -1,0 +1,15 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: PlacementRule
+metadata:
+  name: nginx-placement-rule
+  namespace: nginx-app
+  labels:
+    name: nginx-placement-rule
+    app: nginx-app
+spec:
+  clusterReplicas: 1
+  clusterConditions:
+    - type: OK
+  clusterLabels:
+    matchLabels:
+      environment: Dev

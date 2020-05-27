@@ -1,0 +1,14 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  name: nginx-sub
+  namespace: nginx-app
+  labels:
+    app: nginx-app
+spec:
+  channel: nginx-channel/nginx-channel
+  placement:
+     placementRef:
+      name: nginx-placement-rule
+      kind: PlacementRule
+      group: app.ibm.com

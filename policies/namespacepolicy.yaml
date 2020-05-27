@@ -1,0 +1,47 @@
+apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-namespace
+  namespace: kube-system
+  annotations:
+    policy.mcm.ibm.com/standards: NIST-CSF
+    policy.mcm.ibm.com/categories: PR.IP Information Protection Processes and Procedures
+    policy.mcm.ibm.com/controls: PR.IP-1 Baseline configuration
+spec:
+  complianceType: musthave
+  remediationAction: inform
+  disabled: false
+  namespaces:
+    exclude: ["kube-*"]
+    include: ["default"]
+  object-templates:
+    - complianceType: musthave
+      objectDefinition:
+        kind: Namespace # must have namespace 'prod'
+        apiVersion: v1
+        metadata:
+          name: prod
+---
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-namespace
+  namespace: kube-system
+placementRef:
+  name: placement-policy-namespace
+  kind: PlacementPolicy
+  apiGroup: mcm.ibm.com
+subjects:
+- name: policy-namespace
+  kind: Policy
+  apiGroup: policy.mcm.ibm.com
+---
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementPolicy
+metadata:
+  name: placement-policy-namespace
+  namespace: kube-system
+spec:
+  clusterLabels:
+    matchExpressions:
+      - {key: cloud, operator: In, values: ["MyDataCenter1", "MyDataCenter2"]}
