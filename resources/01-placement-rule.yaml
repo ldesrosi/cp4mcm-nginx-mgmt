@@ -1,11 +1,11 @@
 apiVersion: app.ibm.com/v1alpha1
 kind: PlacementRule
 metadata:
-  name: nginx-placement-rule
-  namespace: nginx-app
+  name: order-ms-placement-rule
+  namespace: vaccine-order-ms
   labels:
-    name: nginx-placement-rule
-    app: nginx-app
+    name: order-ms-placement-rule
+    app: order-ms-app
 spec:
   clusterReplicas: 1
   clusterConditions:

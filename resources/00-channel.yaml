@@ -2,8 +2,8 @@
 apiVersion: app.ibm.com/v1alpha1
 kind: Channel
 metadata:
-  name: nginx-channel
-  namespace: nginx-channel
+  name: order-mgr-channel
+  namespace: vaccine-ms-channel
 spec:  
     type: GitHub
     pathname: https://github.com/ldesrosi/cp4mcm-nginx-app.git  

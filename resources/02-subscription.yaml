@@ -1,14 +1,14 @@
 apiVersion: app.ibm.com/v1alpha1
 kind: Subscription
 metadata:
-  name: nginx-sub
-  namespace: nginx-app
+  name: order-ms-sub
+  namespace: vaccine-order-ms
   labels:
-    app: nginx-app
+    app: order-ms-app
 spec:
-  channel: nginx-channel/nginx-channel
+  channel: order-mgr-channel/vaccine-ms-channel
   placement:
      placementRef:
-      name: nginx-placement-rule
+      name: order-ms-placement-rule
       kind: PlacementRule
       group: app.ibm.com

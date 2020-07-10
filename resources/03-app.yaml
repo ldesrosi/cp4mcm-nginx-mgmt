@@ -1,15 +1,15 @@
 apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
- name: nginx-app
- namespace: nginx-app
+ name: order-ms-app
+ namespace: vaccine-order-ms
  labels:
-  name: nginx-app
-  app: nginx-app 
+  name: order-ms-app
+  app: order-ms-app
 spec:
  componentKinds:
  - group: app.ibm.com/v1alpha1
    kind: Subscription
  selector:
   matchLabels:
-   app: nginx-app
+   app: order-ms-app
