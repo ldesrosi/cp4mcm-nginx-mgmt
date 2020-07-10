@@ -1,0 +1,31 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Deployable
+metadata:
+  annotations:
+    app.ibm.com/is-local-deployable: "false"
+  name: order-ms-deploy
+  namespace: vaccine-order-ms
+spec:
+  template:
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: order-ms-deployment
+      name: order-ms-deployment
+      namespace: vaccine-order-ms
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: order-ms-app
+      template:
+        metadata:
+          labels:
+            app: order-ms-app
+        spec:
+          containers:
+          - image: order-ms-app
+            name: default-route-openshift-image-registry.gse-eda-demo-202005-fa9ee67c9ab6a7791435450358e564cc-0000.us-south.containers.appdomain.cloud/vaccine-cold-chain/vaccine-order-mgr:0.0.1
+            ports:
+            - containerPort: 80

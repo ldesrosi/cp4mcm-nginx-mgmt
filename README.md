@@ -6,6 +6,8 @@ The following document will walk through the process of defining 5 custom resour
 
 ![MCM Application diagram](./Images/architecture.png)
 
+![MCM Application diagram](./Images/architecture-2.png)
+
 ## Creating an MCM Application 
 
 ### Channels
