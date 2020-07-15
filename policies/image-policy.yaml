@@ -1,8 +1,8 @@
 apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
 kind: ClusterImagePolicy
 metadata:
-  name: order-ms-sub
-  namespace: vaccine-order-ms
+  name: nginx-app
+  namespace: nginx-app
 spec:
   repositories:
     # allow all images

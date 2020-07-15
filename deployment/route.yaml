@@ -3,14 +3,14 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   labels:
-    app: order-ms-app
+    app: nginx-app
   annotations:
     openshift.io/host.generated: 'true'
-  name: order-ms-route
+  name: nginx-route
 spec:
   to:
     kind: Service
-    name: order-ms-svc
+    name: nginx-svc
     weight: 100
   port:
     targetPort: 8081

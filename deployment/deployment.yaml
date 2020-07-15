@@ -4,17 +4,17 @@ metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
   labels:
-    app: order-ms-app
-    release: order-ms-app
-  name: order-ms-app-deployment
+    app: nginx-app
+    release: nginx-app
+  name: nginx-app-deployment
 spec:
   progressDeadlineSeconds: 600
   replicas: 2
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: order-ms-app
-      release: order-ms-app
+      app: nginx-app
+      release: nginx-app
   strategy:
     rollingUpdate:
       maxSurge: 100%
@@ -23,12 +23,12 @@ spec:
   template:
     metadata:
       labels:
-        app: order-ms-app
-        release: order-ms-app
-      name: order-ms-app
+        app: nginx-app
+        release: nginx-app
+      name: nginx-app
     spec:
       containers:
-      - image: docker.io/twalter/openshift-nginx:latest
+      - image: docker.io/nginx:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -40,7 +40,7 @@ spec:
           periodSeconds: 30
           successThreshold: 1
           timeoutSeconds: 1
-        name: order-ms-app
+        name: nginx-app
         ports:
         - containerPort: 8081
           name: service
