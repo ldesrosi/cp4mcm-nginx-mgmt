@@ -13,5 +13,5 @@ spec:
     name: nginx-svc
     weight: 100
   port:
-    targetPort: 8081
+    targetPort: 8080
   wildcardPolicy: None

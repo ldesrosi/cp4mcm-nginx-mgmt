@@ -7,6 +7,7 @@ metadata:
     app: nginx-app
     release: nginx-app
   name: nginx-app-deployment
+  namespace: nginx-app
 spec:
   progressDeadlineSeconds: 600
   replicas: 2
@@ -28,8 +29,8 @@ spec:
       name: nginx-app
     spec:
       containers:
-      - image: docker.io/nginx:latest
-        imagePullPolicy: IfNotPresent
+      - image: nginxinc/nginx-unprivileged:1.15.12
+        imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
           httpGet:
@@ -42,7 +43,7 @@ spec:
           timeoutSeconds: 1
         name: nginx-app
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
           name: service
           protocol: TCP
         readinessProbe:
