@@ -5,5 +5,10 @@ metadata:
   name: order-mgr-channel
   namespace: vaccine-ms-channel
 spec:  
-    type: GitHub
-    pathname: https://github.com/ldesrosi/cp4mcm-nginx-app.git  
+  sourceNamespaces:
+  - vaccine-order-ms
+  type: Namespace
+  pathname: vaccine-ms-channel
+  gates:
+    annotations:
+      dev-ready: approved

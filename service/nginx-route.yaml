@@ -1,0 +1,17 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  labels:
+    app: order-ms-app
+  annotations:
+    openshift.io/host.generated: 'true'
+  name: order-ms-route
+spec:
+  to:
+    kind: Service
+    name: order-ms-svc
+    weight: 100
+  port:
+    targetPort: 8081
+  wildcardPolicy: None

@@ -29,3 +29,40 @@ spec:
             name: default-route-openshift-image-registry.gse-eda-demo-202005-fa9ee67c9ab6a7791435450358e564cc-0000.us-south.containers.appdomain.cloud/vaccine-cold-chain/vaccine-order-mgr:0.0.1
             ports:
             - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: order-ms-app
+    release: order-ms-app
+  name: order-ms-svc
+  namespace: vaccine-order-ms
+spec:
+  ports:
+  - name: service
+    port: 8081
+    protocol: TCP
+  selector:
+    app: order-ms-app
+    release: order-ms-app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  labels:
+    app: order-ms-app
+  annotations:
+    openshift.io/host.generated: 'true'
+  name: order-ms-route
+spec:
+  to:
+    kind: Service
+    name: order-ms-svc
+    weight: 100
+  port:
+    targetPort: 8081
+  wildcardPolicy: None

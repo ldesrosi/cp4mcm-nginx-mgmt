@@ -6,8 +6,9 @@ metadata:
   labels:
     app: order-ms-app
 spec:
-  channel: order-mgr-channel/vaccine-ms-channel
-  source: https://github.ibm.com/vaccine-cold-chain/vaccine-order-mgr
+  sourceNamespaces:
+  - vaccine-order-ms
+  channel: order-mgr-channel
   placement:
      placementRef:
       name: order-ms-placement-rule
