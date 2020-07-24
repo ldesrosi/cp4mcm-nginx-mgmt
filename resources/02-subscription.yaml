@@ -8,7 +8,7 @@ metadata:
 spec:
   channel: nginx-channel/nginx-channel
   placement:
-     placementRef:
+    placementRef:
       name: nginx-placement-rule
       kind: PlacementRule
       group: app.ibm.com

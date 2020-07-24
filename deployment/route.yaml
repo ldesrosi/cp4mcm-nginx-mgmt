@@ -1,0 +1,17 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  labels:
+    app: nginx-app
+  annotations:
+    openshift.io/host.generated: 'true'
+  name: nginx-route
+spec:
+  to:
+    kind: Service
+    name: nginx-svc
+    weight: 100
+  port:
+    targetPort: 8080
+  wildcardPolicy: None
